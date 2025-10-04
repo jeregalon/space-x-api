@@ -1,6 +1,6 @@
 import { formatCustomDate } from "../services/functions"
 
-export default function Card({ title, article, date, details }) {
+export default function HistoryCard({ title, article, date, details }) {
   return (
     <div className="flex flex-col justify-between w-full max-w-sm h-60 mt-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6">
       <div>

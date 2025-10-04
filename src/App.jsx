@@ -1,5 +1,5 @@
-import { act, useEffect } from 'react'
-import Card from './components/Card'
+import { useEffect } from 'react'
+import Card from './components/HistoryCard'
 import { useData } from './hooks/useData'
 import Tabs from './components/Tabs'
 import Info from './components/Info'

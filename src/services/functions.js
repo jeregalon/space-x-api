@@ -36,7 +36,10 @@ export async function getLaunches() {
       rocket: m.rocket,
       article: m.links.article,
       date: m.date_utc,
-      details: m.details
+      details: m.details,
+      patch: m.links.patch.small,
+      success: m.success,
+      webcast: m.links.webcast
     }))
   } catch (e) {
     throw new Error(e)

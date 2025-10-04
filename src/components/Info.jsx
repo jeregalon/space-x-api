@@ -1,10 +1,11 @@
-import Card from './Card'
+import HistoryCard from './HistoryCard'
+import LaunchesCard from './LaunchesCard'
 
 export function History({ data }) {
     if (!data) return
     return (
         data.map(m => (
-            <Card 
+            <HistoryCard 
                 key={m.id}
                 title={m.title}
                 article={m.article}
@@ -19,12 +20,15 @@ export function Launches({ data }) {
     if (!data) return
     return (
         data.map(m => (
-            <Card 
+            <LaunchesCard 
                 key={m.id}
-                title={m.title}
+                rocket={m.rocket}
                 article={m.article}
                 date={m.date}
                 details={m.details}
+                patch={m.patch}
+                success={m.success}
+                webcast={m.webcast}
             />
         ))
     )

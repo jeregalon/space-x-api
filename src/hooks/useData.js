@@ -21,6 +21,7 @@ export function useData() {
         try {
             setError(null)
             const newData = await getFunction()
+            console.log(newData)
             setData(newData)
         } catch (e) {
             setError(e.message)
