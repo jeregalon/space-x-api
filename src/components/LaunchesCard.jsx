@@ -1,5 +1,27 @@
+import { useEffect, useRef, useState } from "react"
 import { FaRocket, FaSkullCrossbones } from "react-icons/fa"
 
+// 👇 Hook reutilizable para detectar si el elemento está visible en pantalla
+function useOnScreen(options) {
+  const ref = useRef()
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true)
+        observer.unobserve(entry.target) // Deja de observar una vez visible
+      }
+    }, options)
+
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [options])
+
+  return [ref, isVisible]
+}
+
+// 👇 Componente principal
 export default function LaunchesCard({
   rocket,
   article,
@@ -9,19 +31,30 @@ export default function LaunchesCard({
   success,
   webcast,
 }) {
-    // console.log(patch)
+  // Usamos el hook para saber cuándo cargar imagen y video
+  const [ref, visible] = useOnScreen({ rootMargin: "150px" })
+
   return (
-    <div className="flex flex-col bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden max-w-md">
-      {/* Imagen del logo o parche */}
+    <div
+      ref={ref}
+      className="flex flex-col bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden max-w-md"
+    >
+      {/* Imagen del parche */}
       <div className="bg-gray-100 flex items-center justify-center h-48">
-        {patch ? (
-          <img
-            src={patch}
-            alt="Mission patch"
-            className="h-32 object-contain"
-          />
+        {visible ? (
+          patch ? (
+            <img
+              src={patch}
+              alt="Mission patch"
+              loading="lazy"
+              className="h-32 object-contain transition-transform duration-500 hover:scale-105"
+            />
+          ) : (
+            <div className="text-gray-400 italic">Sin imagen</div>
+          )
         ) : (
-          <div className="text-gray-400 italic">Sin imagen</div>
+          // Skeleton loader mientras no está visible
+          <div className="h-32 w-32 bg-gray-200 animate-pulse rounded" />
         )}
       </div>
 
@@ -41,19 +74,19 @@ export default function LaunchesCard({
         <div className="flex items-center gap-2 mb-4">
           {success ? (
             <>
-              <FaRocket className="text-green-600 w-5 h-5" />
+              <FaRocket className="text-green-600 w-5 h-5 animate-bounce" />
               <span className="text-green-700 font-medium">Exitoso</span>
             </>
           ) : (
             <>
-              <FaSkullCrossbones className="text-red-600 w-5 h-5" />
+              <FaSkullCrossbones className="text-red-600 w-5 h-5 rotate-12" />
               <span className="text-red-700 font-medium">Fallido</span>
             </>
           )}
         </div>
 
-        {/* Video integrado */}
-        {webcast && (
+        {/* Video integrado (solo se carga cuando es visible) */}
+        {visible && webcast && (
           <div className="aspect-video mb-4 rounded-lg overflow-hidden">
             <iframe
               src={webcast.replace("watch?v=", "embed/")}
