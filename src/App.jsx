@@ -1,30 +1,28 @@
-import { useEffect } from 'react'
+import { act, useEffect } from 'react'
 import Card from './components/Card'
-import { useHistory } from './hooks/useHistory'
+import { useData } from './hooks/useData'
+import Tabs from './components/Tabs'
+import Info from './components/Info'
+import useTabs from './hooks/useTabs'
 
 function App() {
-  const { history, getHistory, error } = useHistory()
+  const { activeTab,  moveToTab } = useTabs()
+  const { data, getData, error } = useData(activeTab)
 
   useEffect(() => {
-    getHistory()
-  }, [])
+    getData(activeTab)
+  }, [activeTab])
 
   return (
     <div className='flex flex-col items-center p-4 g-4'>
-      <h1>Cronología de SpaceX</h1>
-      {history
-        ? history.map(m => (
-          <Card 
-            key={m.id}
-            title={m.title}
-            article={m.article}
-            date={m.date}
-            details={m.details}
-          />
-        ))
-        : <p>No history to show</p>
-      }
-      {error && <p>{error}</p>}
+      <Tabs 
+        activeTabId={activeTab}
+        moveToTab={moveToTab}
+      />
+      <Info 
+        tabId={activeTab}
+        data={data}
+      />
     </div>
   )
 }

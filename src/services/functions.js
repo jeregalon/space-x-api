@@ -1,4 +1,5 @@
 const HISTORY_LINK = 'https://api.spacexdata.com/v4/history'
+const LAUNCHES_LINK = 'https://api.spacexdata.com/v5/launches'
 
 export const formatCustomDate = (dateString) => {
   const date = new Date(dateString);
@@ -19,6 +20,22 @@ export async function getChronology() {
       title: m.title,
       article: m.links.article,
       date: m.event_date_utc,
+      details: m.details
+    }))
+  } catch (e) {
+    throw new Error(e)
+  }
+}
+
+export async function getLaunches() {
+  try {
+    const res = await fetch(LAUNCHES_LINK)
+    const data = await res.json()
+    return data?.map(m => ({
+      id: m.id,
+      rocket: m.rocket,
+      article: m.links.article,
+      date: m.date_utc,
       details: m.details
     }))
   } catch (e) {

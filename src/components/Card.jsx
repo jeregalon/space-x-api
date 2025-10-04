@@ -2,7 +2,7 @@ import { formatCustomDate } from "../services/functions"
 
 export default function Card({ title, article, date, details }) {
   return (
-    <div className="flex flex-col justify-between w-full max-w-sm h-80 bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6">
+    <div className="flex flex-col justify-between w-full max-w-sm h-60 mt-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6">
       <div>
         <h2 className="text-xl font-semibold text-gray-800 mb-2 line-clamp-2">
           {title}
