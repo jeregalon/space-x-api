@@ -1,3 +1,5 @@
+const HISTORY_LINK = 'https://api.spacexdata.com/v4/history'
+
 export const formatCustomDate = (dateString) => {
   const date = new Date(dateString);
 
@@ -6,4 +8,20 @@ export const formatCustomDate = (dateString) => {
     month: "long",
     year: "numeric"
   });
+}
+
+export async function getChronology() {
+  try {
+    const res = await fetch(HISTORY_LINK)
+    const data = await res.json()
+    return data?.map(m => ({
+      id: m.id,
+      title: m.title,
+      article: m.links.article,
+      date: m.event_date_utc,
+      details: m.details
+    }))
+  } catch (e) {
+    throw new Error(e)
+  }
 }
