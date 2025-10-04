@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getChronology, getLaunches } from '../services/functions'
+import { getChronology, getLaunches, getRockets } from '../services/functions'
 
 export function useData() {
     const [data, setData] = useState()
@@ -10,7 +10,7 @@ export function useData() {
             if (tab === 0) {
                 return getChronology()
             } else if (tab === 1) {
-                return getChronology()
+                return getRockets()
             } else if (tab === 2) {
                 return getChronology()
             } else if (tab === 3) {
@@ -21,7 +21,6 @@ export function useData() {
         try {
             setError(null)
             const newData = await getFunction()
-            console.log(newData)
             setData(newData)
         } catch (e) {
             setError(e.message)

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 
-function useOnScreen(options) {
+export default function useOnScreen(options) {
   const ref = useRef()
   const [isVisible, setIsVisible] = useState(false)
 

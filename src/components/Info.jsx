@@ -22,7 +22,7 @@ export function Launches({ data }) {
         data.map(m => (
             <LaunchesCard 
                 key={m.id}
-                rocket={m.rocket}
+                rocketID={m.rocket}
                 article={m.article}
                 date={m.date}
                 details={m.details}

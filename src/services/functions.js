@@ -1,5 +1,6 @@
 const HISTORY_LINK = 'https://api.spacexdata.com/v4/history'
 const LAUNCHES_LINK = 'https://api.spacexdata.com/v5/launches'
+const ROCKETS_LINK = 'https://api.spacexdata.com/v4/rockets'
 
 export const formatCustomDate = (dateString) => {
   const date = new Date(dateString);
@@ -44,4 +45,38 @@ export async function getLaunches() {
   } catch (e) {
     throw new Error(e)
   }
+}
+
+export async function getRockets() {
+  try {
+    const res = await fetch(ROCKETS_LINK)
+    const data = await res.json()
+    return data?.map(m => ({
+      id: m.id,
+      name: m.name,
+      firstFlight: m.first_flight,
+      active: m.active,
+      stages: m.stages,
+      heightInMeters: m.height.meters,
+      heightInFeet: m.height.feet,
+      diameterInMeters: m.diameter.meters,
+      diameterInFeet: m.diameter.feet,
+      massInKg: m.mass.kg,
+      massInLb: m.mass.lb,
+      numOfEngines: m.first_stage.engines,
+    }))
+  } catch (e) {
+    throw new Error(e)
+  }
+}
+
+export async function getRocketById(id) {
+  try {
+    const rockets = await getRockets()
+    const identifiedRocket = rockets.find(r => r.id === id)
+    return identifiedRocket
+  } catch (e) {
+    throw new Error(e)
+  }
+  
 }

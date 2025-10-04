@@ -1,29 +1,11 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from 'react'
+import useOnScreen from "../hooks/useOnScreen"
 import { FaRocket, FaSkullCrossbones } from "react-icons/fa"
-
-// 👇 Hook reutilizable para detectar si el elemento está visible en pantalla
-function useOnScreen(options) {
-  const ref = useRef()
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setIsVisible(true)
-        observer.unobserve(entry.target) // Deja de observar una vez visible
-      }
-    }, options)
-
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [options])
-
-  return [ref, isVisible]
-}
+import { formatCustomDate, getRocketById } from "../services/functions"
 
 // 👇 Componente principal
 export default function LaunchesCard({
-  rocket,
+  rocketID,
   article,
   date,
   details,
@@ -33,11 +15,27 @@ export default function LaunchesCard({
 }) {
   // Usamos el hook para saber cuándo cargar imagen y video
   const [ref, visible] = useOnScreen({ rootMargin: "150px" })
+  const [error, setError] = useState(null)
+  const [rocketName, setRocketName] = useState("")
+
+  useEffect(() => {
+    async function fetchRocket() {
+      try {
+        setError(null)
+        const rocketData = await getRocketById(rocketID)
+        setRocketName(rocketData?.name || "")
+      } catch (e) {
+        setError(e.message)
+      }
+    }
+
+    if (rocketID) fetchRocket()
+  }, [rocketID])
 
   return (
     <div
       ref={ref}
-      className="flex flex-col bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden max-w-md"
+      className="flex flex-col mt-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden max-w-md"
     >
       {/* Imagen del parche */}
       <div className="bg-gray-100 flex items-center justify-center h-48">
@@ -61,9 +59,13 @@ export default function LaunchesCard({
       {/* Contenido principal */}
       <div className="flex flex-col justify-between p-5 flex-1">
         <div>
-          <p className="text-sm text-gray-500 mb-1">{date}</p>
+          <p className="text-sm text-gray-500 mb-1">{formatCustomDate(date)}</p>
           <h2 className="text-lg font-semibold text-gray-800 mb-2">
-            Cohete: {rocket}
+            Cohete: {
+              error
+              ? error
+              : rocketName
+            }
           </h2>
           <p className="text-gray-600 text-sm mb-4 line-clamp-3">
             {details || "Sin detalles disponibles."}
