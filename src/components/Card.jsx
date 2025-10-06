@@ -1,8 +1,14 @@
 import { formatCustomDate } from "../services/functions"
 
-export default function HistoryCard({ title, article, date, details }) {
+export default function Card({
+    children,
+    title, 
+    article, 
+    date, 
+    details
+}) {
   return (
-    <div className="flex flex-col justify-between w-[70vw] h-[200px] my-6 bg-[#fff] opacity-80 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6">
+    <div className="[&_h1]:text-xl [&_p]:text-base flex flex-col justify-between w-[70vw] my-6 bg-[#fff] opacity-80 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6">
       <div>
         <h2 className="text-2xl font-semibold text-gray-800 mb-2 line-clamp-2">
           {title}
@@ -11,6 +17,8 @@ export default function HistoryCard({ title, article, date, details }) {
           {details}
         </p>
       </div>
+
+      {children}
 
       <div className="flex items-center justify-between text-base text-gray-500">
         <p>{formatCustomDate(date)}</p>

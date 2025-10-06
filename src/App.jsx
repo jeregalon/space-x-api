@@ -35,10 +35,10 @@ function App() {
         activeBckgImg={activeBckgImg}
       />
       <div class="relative z-10 flex flex-col items-center justify-center h-full bg-black/40">
-        {/* <Tabs 
+        <Tabs 
           activeTabId={activeTab}
           moveToTab={moveToTab}
-        /> */}
+        />
         <Info 
           tabId={activeTab}
           data={data}

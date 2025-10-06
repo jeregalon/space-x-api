@@ -8,7 +8,7 @@ export default function Tabs({ activeTabId, moveToTab }) {
     ]
 
   return (
-    <div className="fixed w-full bg-white rounded-2xl shadow-md p-2 flex justify-around max-w-3xl mx-auto mb-8">
+    <div className="w-full bg-white rounded-2xl shadow-md p-2 flex justify-around max-w-3xl mx-auto mb-8">
       {tabs.map((tab) => (
         <button
           key={tab.id}

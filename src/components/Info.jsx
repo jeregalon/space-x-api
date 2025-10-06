@@ -24,6 +24,7 @@ export function Launches({ data }) {
         data.map(m => (
             <LaunchesCard 
                 key={m.id}
+                name={m.name}
                 rocketID={m.rocket}
                 article={m.article}
                 date={m.date}

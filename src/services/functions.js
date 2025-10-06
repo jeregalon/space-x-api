@@ -35,6 +35,7 @@ export async function getLaunches() {
     const data = await res.json()
     return data?.map(m => ({
       id: m.id,
+      name: m.name,
       rocket: m.rocket,
       article: m.links.article,
       date: m.date_utc,
