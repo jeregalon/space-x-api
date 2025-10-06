@@ -37,26 +37,26 @@ export function Launches({ data }) {
 }
 
 export function Dragons({ data }) {
-  if (!data) return null
+    if (!data) return null
 
-  return (
-    data.map(d => (
-        <DragonsCard
-        key={d.id}
-        name={d.name}
-        active={d.active}
-        description={d.description}
-        diameterInMeters={d.diameterInMeters}
-        diameterInFeet={d.diameterInFeet}
-        crewCapacity={d.crewCapacity}
-        dryMassInKg={d.dryMassInKg}
-        dryMassInLb={d.dryMassInLb}
-        firstFlight={d.firstFlight}
-        image={d.image}
-        />
+    return (
+        data.map(d => (
+            <DragonsCard
+            key={d.id}
+            name={d.name}
+            active={d.active}
+            description={d.description}
+            diameterInMeters={d.diameterInMeters}
+            diameterInFeet={d.diameterInFeet}
+            crewCapacity={d.crewCapacity}
+            dryMassInKg={d.dryMassInKg}
+            dryMassInLb={d.dryMassInLb}
+            firstFlight={d.firstFlight}
+            image={d.image}
+            />
+            )
         )
     )
-  )
 }
 
 export function Rockets({ data }) {
