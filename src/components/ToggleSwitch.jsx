@@ -1,6 +1,6 @@
-export function ToggleSwitch({ checked, onChange, labelLeft, labelRight }) {
+export function ToggleSwitch({ checked, onChange, labelLeft, labelRight, className }) {
   return (
-    <div className="flex items-center gap-2">
+    <div className={className}>
       <span>{labelLeft}</span>
       <button
         onClick={() => onChange(!checked)}

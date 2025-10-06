@@ -77,6 +77,8 @@ export function Rockets({ data }) {
                 massInKg={m.massInKg}
                 massInLb={m.massInLb}
                 image={m.image}
+                wikipedia={m.wikipedia}
+                description={m.description}
             />
         ))
     )

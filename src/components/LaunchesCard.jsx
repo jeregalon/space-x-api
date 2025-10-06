@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import useOnScreen from "../hooks/useOnScreen"
 import useCachedAsset from "../hooks/useCachedAsset"
 import { FaRocket, FaSkullCrossbones } from "react-icons/fa"
-import { formatCustomDate, getRocketById } from "../services/functions"
+import { getRocketById } from "../services/functions"
 import Card from "./Card"
 
 function extractYouTubeId(url) {

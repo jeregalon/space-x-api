@@ -8,11 +8,11 @@ export function ImageCarousel ({ backgroundImages, activeBckgImg }) {
                     : 0
                 return (
                     <div
-                    key={index} 
-                    className={
-                        `absolute inset-0 bg-cover bg-center fade opacity-${opacity} transition-opacity duration-1500 ease-in-out`
-                    } 
-                    style={{backgroundImage: `url(${image})`}}>
+                        key={index} 
+                        className={
+                            `absolute inset-0 bg-cover bg-center fade opacity-${opacity} transition-opacity duration-1500 ease-in-out`
+                        } 
+                        style={{backgroundImage: `url(${image})`}}>
                     </div>
                 )})
             }
