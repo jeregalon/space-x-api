@@ -63,7 +63,7 @@ export async function getRockets() {
       diameterInFeet: m.diameter.feet,
       massInKg: m.mass.kg,
       massInLb: m.mass.lb,
-      numOfEngines: m.first_stage.engines,
+      image: m.flickr_images[0]
     }))
   } catch (e) {
     throw new Error(e)
