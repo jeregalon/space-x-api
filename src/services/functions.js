@@ -1,5 +1,6 @@
 const HISTORY_LINK = 'https://api.spacexdata.com/v4/history'
 const LAUNCHES_LINK = 'https://api.spacexdata.com/v5/launches'
+const DRAGONS_LINK = 'https://api.spacexdata.com/v4/dragons'
 const ROCKETS_LINK = 'https://api.spacexdata.com/v4/rockets'
 
 export const formatCustomDate = (dateString) => {
@@ -41,6 +42,28 @@ export async function getLaunches() {
       patch: m.links.patch.small,
       success: m.success,
       webcast: m.links.webcast
+    }))
+  } catch (e) {
+    throw new Error(e)
+  }
+}
+
+export async function getDragons() {
+  try {
+    const res = await fetch(DRAGONS_LINK)
+    const data = await res.json()
+    return data?.map(m => ({
+      id: m.id,
+      name: m.name,
+      active: m.active,
+      description: m.description,
+      diameterInMeters: m.diameter.meters,
+      diameterInFeet: m.diameter.feet,
+      crewCapacity: m.crew_capacity,
+      dryMassInKg: m.dry_mass_kg,
+      dryMassInLb: m.dry_mass_lb,
+      firstFlight: m.first_flight,
+      image: m.flickr_images[0]
     }))
   } catch (e) {
     throw new Error(e)

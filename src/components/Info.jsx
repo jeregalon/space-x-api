@@ -1,5 +1,6 @@
 import HistoryCard from './HistoryCard'
 import LaunchesCard from './LaunchesCard'
+import DragonsCard from './DragonsCard'
 import RocketsCard from './RocketsCard'
 
 export function History({ data }) {
@@ -35,6 +36,29 @@ export function Launches({ data }) {
     )
 }
 
+export function Dragons({ data }) {
+  if (!data) return null
+
+  return (
+    data.map(d => (
+        <DragonsCard
+        key={d.id}
+        name={d.name}
+        active={d.active}
+        description={d.description}
+        diameterInMeters={d.diameterInMeters}
+        diameterInFeet={d.diameterInFeet}
+        crewCapacity={d.crewCapacity}
+        dryMassInKg={d.dryMassInKg}
+        dryMassInLb={d.dryMassInLb}
+        firstFlight={d.firstFlight}
+        image={d.image}
+        />
+        )
+    )
+  )
+}
+
 export function Rockets({ data }) {
     if (!data) return
     return (
@@ -63,7 +87,7 @@ export default function Info ({ tabId, data }) {
     } else if (tabId === 1) {
         return <Rockets data={data} />
     } else if (tabId === 2) {
-        return <History data={data} />
+        return <Dragons data={data} />
     } else if (tabId === 3) {
         return <Launches data={data} />
     }

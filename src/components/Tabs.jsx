@@ -3,7 +3,7 @@ export default function Tabs({ activeTabId, moveToTab }) {
     const tabs = [
         { id: 0, label: "Historia" },
         { id: 1, label: "Cohetes" },
-        { id: 2, label: "Cápsulas" },
+        { id: 2, label: "Dragons" },
         { id: 3, label: "Lanzamientos" },
     ]
 

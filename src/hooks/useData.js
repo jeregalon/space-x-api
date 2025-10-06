@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getChronology, getLaunches, getRockets } from '../services/functions'
+import { getChronology, getDragons, getLaunches, getRockets } from '../services/functions'
 
 export function useData() {
     const [data, setData] = useState()
@@ -12,7 +12,7 @@ export function useData() {
             } else if (tab === 1) {
                 return getRockets()
             } else if (tab === 2) {
-                return getChronology()
+                return getDragons()
             } else if (tab === 3) {
                 return getLaunches()
             }
