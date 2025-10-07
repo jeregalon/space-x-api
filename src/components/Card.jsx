@@ -21,7 +21,10 @@ export default function Card({
       {children}
 
       <div className="flex items-center justify-between text-gray-500">
-        <p>{formatCustomDate(date)}</p>
+        <p>{`${date 
+            ? formatCustomDate(date)
+            : ""
+        }`}</p>
         <a href={article} target="_blank" rel="noopener noreferrer">
             Leer más →
         </a>

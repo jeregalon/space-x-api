@@ -29,7 +29,7 @@ function App() {
   }, [])
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden">
+    <div className="relative min-h-screen">
       <ImageCarousel
         backgroundImages={backgroundImages}
         activeBckgImg={activeBckgImg}

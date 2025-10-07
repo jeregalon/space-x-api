@@ -39,7 +39,7 @@ export default function RocketsCard({
     >
       <div className="flex justify-between">
         {/* Imagen del cohete */}
-        <div className="h-100 rounded-lg">
+        <div className="h-100 rounded-lg overflow-hidden">
           {image ? (
             <img
               src={image}
