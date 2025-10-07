@@ -43,17 +43,18 @@ export function Dragons({ data }) {
     return (
         data.map(d => (
             <DragonsCard
-            key={d.id}
-            name={d.name}
-            active={d.active}
-            description={d.description}
-            diameterInMeters={d.diameterInMeters}
-            diameterInFeet={d.diameterInFeet}
-            crewCapacity={d.crewCapacity}
-            dryMassInKg={d.dryMassInKg}
-            dryMassInLb={d.dryMassInLb}
-            firstFlight={d.firstFlight}
-            image={d.image}
+                key={d.id}
+                name={d.name}
+                active={d.active}
+                description={d.description}
+                diameterInMeters={d.diameterInMeters}
+                diameterInFeet={d.diameterInFeet}
+                crewCapacity={d.crewCapacity}
+                dryMassInKg={d.dryMassInKg}
+                dryMassInLb={d.dryMassInLb}
+                firstFlight={d.firstFlight}
+                image={d.image}
+                wikipedia={d.wikipedia}
             />
             )
         )

@@ -4,7 +4,6 @@ import { FaRocket } from "react-icons/fa"
 import { ToggleSwitch } from "./ToggleSwitch"
 import Card from "./Card"
 
-// 🔹 Componente principal
 export default function RocketsCard({
   name,
   firstFlight,

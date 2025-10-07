@@ -64,7 +64,8 @@ export async function getDragons() {
       dryMassInKg: m.dry_mass_kg,
       dryMassInLb: m.dry_mass_lb,
       firstFlight: m.first_flight,
-      image: m.flickr_images[0]
+      image: m.flickr_images[0],
+      wikipedia: m.wikipedia
     }))
   } catch (e) {
     throw new Error(e)
