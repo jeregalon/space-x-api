@@ -3,7 +3,7 @@ import { getChronology, getDragons, getLaunches, getRockets } from '../services/
 
 export function useData() {
     const [data, setData] = useState()
-    const [error, setError] = useState(null)
+    const [_error, setError] = useState(null)
 
     const getData = async (tab) => {
         const getFunction = () => {
@@ -27,6 +27,6 @@ export function useData() {
         }
     }
 
-    return{ data, getData, error }
+    return{ data, getData, _error }
     
 }

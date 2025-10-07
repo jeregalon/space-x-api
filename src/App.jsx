@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Card from './components/HistoryCard'
 import { useData } from './hooks/useData'
 import Tabs from './components/Tabs'
@@ -6,10 +6,11 @@ import Info from './components/Info'
 import useTabs from './hooks/useTabs'
 import useBackground from './hooks/useBackground'
 import { ImageCarousel } from './components/ImageCarousel'
+import ErrorMessage from './components/ErrorMessage'
 
 function App() {
   const { activeTab,  moveToTab } = useTabs()
-  const { data, getData, error } = useData(activeTab)
+  const { data, getData, _error } = useData(activeTab)
   const { activeBckgImg, setActiveBckgImg, backgroundImages } = useBackground()
   
   useEffect(() => {
@@ -34,16 +35,24 @@ function App() {
         backgroundImages={backgroundImages}
         activeBckgImg={activeBckgImg}
       />
-      <div class="relative z-10 flex flex-col items-center justify-center h-full bg-black/40">
-        <Tabs 
-          activeTabId={activeTab}
-          moveToTab={moveToTab}
-        />
-        <Info 
-          tabId={activeTab}
-          data={data}
-        />
-      </div>
+
+      {
+        _error ? (
+          <ErrorMessage errorMessage={_error}/>
+        ) : (
+          <div className="relative z-10 flex flex-col items-center justify-center h-full bg-black/40">
+            <Tabs 
+              activeTabId={activeTab}
+              moveToTab={moveToTab}
+            />
+            <Info 
+              tabId={activeTab}
+              data={data}
+            />
+          </div>
+        )
+      }
+            
     </div>
   )
 }
